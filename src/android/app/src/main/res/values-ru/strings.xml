@@ -284,6 +284,11 @@
     <string name="button_home">СМЕНИТЬ ЭКРАН</string>
     <string name="button_debug">НАСТРОЙКИ/АЛЬТ. СКОРОСТЬ</string>
 
+    <string name="speed_limit_title">Ограничение скорости</string>
+    <string name="speed_limit_hint">Введите целое число, диапазон: 0 - 2000</string>
+    <string name="invalid_speed_error">Введенная скорость недействительна</string>
+    <string name="invalid_number_error">Пожалуйста, введите корректное число</string>
+
     <string name="nnf_new_folder">Новая папка</string>
     <string name="nnf_create_folder_error">Не удалось создать папку</string>
     <string name="nnf_name">Имя</string>

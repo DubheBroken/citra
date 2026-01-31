@@ -2,22 +2,26 @@ package org.citra.emu.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Debug;
 import android.os.Handler;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -517,6 +521,38 @@ public class RunningSettingDialog extends DialogFragment {
             mTextSettingName = root.findViewById(R.id.text_setting_name);
             mTextSettingValue = root.findViewById(R.id.text_setting_value);
             mSeekBar = root.findViewById(R.id.seekbar);
+            mSeekBar.setOnClickListener(view -> {
+                showSpeedInputDialog(requireContext(), mSeekBar, this);
+            });
+        }
+
+        private void showSpeedInputDialog(Context context, SeekBar seekBar, Object viewHolder) {
+            final EditText editText = new EditText(context);
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            editText.setText(String.valueOf(seekBar.getProgress()));
+            if (editText.getText() != null) {
+                editText.setSelection(editText.getText().length());
+            }
+
+            new AlertDialog.Builder(context)
+                    .setTitle(R.string.speed_limit_title)
+                    .setMessage(R.string.speed_limit_hint)
+                    .setView(editText)
+                    .setPositiveButton(R.string.nnf_list_ok, (dialog, which) -> {
+                        String inputText = editText.getText().toString();
+                        try {
+                            int input = Integer.parseInt(inputText);
+                            if (input >= 0 && input <= 2000) {
+                                seekBar.setProgress(input);
+                            } else {
+                                Toast.makeText(context, R.string.invalid_speed_error, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (NumberFormatException e) {
+                            Toast.makeText(context, R.string.invalid_number_error, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton(R.string.nnf_list_cancel, null)
+                    .show();
         }
 
         @Override

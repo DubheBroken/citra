@@ -284,6 +284,11 @@
     <string name="button_home">SWAP SCREEN</string>
     <string name="button_debug">SETTINGS/ALT SPEED</string>
 
+    <string name="speed_limit_title">Speed Limit</string>
+    <string name="speed_limit_hint">Please enter an integer, range: 0 - 2000</string>
+    <string name="invalid_speed_error">Invalid speed entered</string>
+    <string name="invalid_number_error">Please enter a valid number</string>
+
     <string name="nnf_new_folder">Nueva carpeta</string>
     <string name="nnf_create_folder_error">Error al crear la carpeta</string>
     <string name="nnf_name">Nombre</string>
