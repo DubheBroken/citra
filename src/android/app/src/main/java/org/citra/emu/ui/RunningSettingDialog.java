@@ -525,7 +525,7 @@ public class RunningSettingDialog extends DialogFragment {
             mTextSettingName.setText(item.getName());
             mSeekBar.setOnSeekBarChangeListener(null);
             if (mItem.getSetting() == SettingsItem.SETTING_FRAME_LIMIT) {
-                mSeekBar.setMax(200);
+                mSeekBar.setMax(2000);
             } else {
                 mSeekBar.setMax(100);
             }
